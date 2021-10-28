@@ -42,9 +42,9 @@ public class FornecedorController {
         return service.buscaCnpj(cnpj);
     }
 
-    @ApiOperation(value = "Altera o estado do fornecedor")
+    @ApiOperation(value = "Altera o status de fornecimento")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Fornecedor alterado com sucesso"),
+            @ApiResponse(code = 200, message = "Status alterado com sucesso"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
