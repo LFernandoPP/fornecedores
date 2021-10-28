@@ -6,6 +6,8 @@ import com.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class FornecedorService {
@@ -16,21 +18,31 @@ public class FornecedorService {
         return fornecedorRepository.insert(fornecedor);
     }
 
-    public void registraItens(ItenFornecidoModel itens) {
-        FornecedorModel fm = fornecedorRepository.findByCnpj(itens.getCnpj());
-        fm.getListaDeItens().add(itens);
-        fornecedorRepository.save(fm);
+    public void registraItens(List<ItenFornecidoModel> itens) {
+        itens.forEach(i -> {
+            FornecedorModel fornecedor = buscaFornecedorCnpj(i.getCnpj());
+            fornecedor.getListaDeItens().add(i);
+            atualizaFornecedor(fornecedor);
+        });
+    }
+
+    public FornecedorModel buscaFornecedorCnpj(String cnpj) {
+        return fornecedorRepository.findByCnpj(cnpj);
+    }
+
+    public FornecedorModel atualizaFornecedor(FornecedorModel fornecedor) {
+        return fornecedorRepository.save(fornecedor);
     }
 
     public void defineFornecedorAtivo(String cnpj, char defineEstado) throws Exception {
-        FornecedorModel fornecedor = fornecedorRepository.findByCnpj(cnpj);
+        FornecedorModel fornecedor = buscaFornecedorCnpj(cnpj);
 
         if (defineEstado == 'S' || defineEstado == 's') {
             fornecedor.setFornecedorAtivo(true);
-            fornecedorRepository.save(fornecedor);
+            atualizaFornecedor(fornecedor);
         } else if (defineEstado == 'N' || defineEstado == 'n') {
             fornecedor.setFornecedorAtivo(false);
-            fornecedorRepository.save(fornecedor);
+            atualizaFornecedor(fornecedor);
         } else {
             throw new Exception("Parâmetro inválido");
         }

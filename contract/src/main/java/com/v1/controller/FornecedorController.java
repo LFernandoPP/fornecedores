@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Api(value = "Fornecedor controller")
 @RestController
 @AllArgsConstructor
@@ -21,25 +23,25 @@ public class FornecedorController {
 
     @ApiOperation(value = "Registra fornecedor")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Fornecedor registrado"),
+            @ApiResponse(code = 201, message = "Fornecedor registrado com sucesso"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public FornecedorModel cadastraFornecedor(@RequestBody FornecedorModel fornecedor) {
+    public FornecedorModel registraFornecedor(@RequestBody FornecedorModel fornecedor) {
         return fornecedorService.registraFornecedor(fornecedor);
     }
 
     @ApiOperation(value = "Registra itens")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Itens registrados"),
+            @ApiResponse(code = 201, message = "Itens registrados com sucesso"),
             @ApiResponse(code = 404, message = "Não encontado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/itens")
-    public void cadastraItens(@RequestBody ItenFornecidoModel itens) {
+    public void registraItens(@RequestBody List<ItenFornecidoModel> itens) {
         fornecedorService.registraItens(itens);
     }
 
@@ -49,6 +51,7 @@ public class FornecedorController {
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/{cnpj}/defineEstado/{defineEstado}")
     public void defineFornecedorAtivo(@PathVariable String cnpj, @PathVariable char defineEstado) throws Exception {
         fornecedorService.defineFornecedorAtivo(cnpj, defineEstado);
