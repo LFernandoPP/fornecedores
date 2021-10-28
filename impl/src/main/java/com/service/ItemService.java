@@ -14,11 +14,12 @@ public class ItemService {
 
     private FornecedorRepository repository;
 
-    public void cadastra(List<ItemModel> itens) {
+    public List<ItemModel> cadastra(List<ItemModel> itens) {
         itens.forEach(item -> {
             FornecedorModel fornecedor = repository.findByCnpj(item.getCnpj());
             fornecedor.getListaItens().add(item);
             repository.save(fornecedor);
         });
+        return itens;
     }
 }

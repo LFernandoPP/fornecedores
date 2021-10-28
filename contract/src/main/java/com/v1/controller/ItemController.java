@@ -28,7 +28,7 @@ public class ItemController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void cadastra(@RequestBody List<ItemModel> itens) {
-        service.cadastra(itens);
+    public List<ItemModel> cadastra(@RequestBody List<ItemModel> itens) {
+        return service.cadastra(itens);
     }
 }
