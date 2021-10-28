@@ -20,9 +20,9 @@ public class ItemController {
 
     private ItemService service;
 
-    @ApiOperation(value = "Registra itens")
+    @ApiOperation(value = "Cadastra itens")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Itens registrados com sucesso"),
+            @ApiResponse(code = 201, message = "Itens cadastra com sucesso"),
             @ApiResponse(code = 404, message = "Não encontado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
