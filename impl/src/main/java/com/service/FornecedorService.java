@@ -1,7 +1,7 @@
 package com.service;
 
 import com.model.FornecedorModel;
-import com.model.ItenFornecidoModel;
+import com.model.ItemModel;
 import com.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ public class FornecedorService {
         return fornecedorRepository.insert(fornecedor);
     }
 
-    public void registraItens(List<ItenFornecidoModel> itens) {
+    public void registraItens(List<ItemModel> itens) {
         itens.forEach(i -> {
             FornecedorModel fornecedor = buscaFornecedorCnpj(i.getCnpj());
-            fornecedor.getListaDeItens().add(i);
+            fornecedor.getListaItens().add(i);
             atualizaFornecedor(fornecedor);
         });
     }

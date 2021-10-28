@@ -29,5 +29,5 @@ public class FornecedorModel {
     private String telefone;
     private String endereco;
     private boolean fornecedorAtivo;
-    private List<ItenFornecidoModel> listaDeItens = new ArrayList<>();
+    private List<ItemModel> listagitItens = new ArrayList<>();
 }

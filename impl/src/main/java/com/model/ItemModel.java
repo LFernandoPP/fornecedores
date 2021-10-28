@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class ItenFornecidoModel {
+public class ItemModel {
 
     private String cnpj;
     private String nomeFantasia;
-    private String iten;
+    private String item;
     private String tempoDeValidade;
     private int valor;
 }

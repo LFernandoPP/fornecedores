@@ -1,7 +1,7 @@
 package com.v1.controller;
 
 import com.model.FornecedorModel;
-import com.model.ItenFornecidoModel;
+import com.model.ItemModel;
 import com.service.FornecedorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +41,7 @@ public class FornecedorController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/itens")
-    public void registraItens(@RequestBody List<ItenFornecidoModel> itens) {
+    public void registraItens(@RequestBody List<ItemModel> itens) {
         fornecedorService.registraItens(itens);
     }
 
