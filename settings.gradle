@@ -1,0 +1,3 @@
+rootProject.name = 'fornecedores'
+include 'impl'
+include 'contract'
