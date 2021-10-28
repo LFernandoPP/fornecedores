@@ -1,12 +1,9 @@
 package com.service;
 
 import com.model.FornecedorModel;
-import com.model.ItemModel;
 import com.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -14,35 +11,27 @@ public class FornecedorService {
 
     private FornecedorRepository fornecedorRepository;
 
-    public FornecedorModel registraFornecedor(FornecedorModel fornecedor) {
+    public FornecedorModel cadastra(FornecedorModel fornecedor) {
         return fornecedorRepository.insert(fornecedor);
     }
 
-    public void registraItens(List<ItemModel> itens) {
-        itens.forEach(i -> {
-            FornecedorModel fornecedor = buscaFornecedorCnpj(i.getCnpj());
-            fornecedor.getListaItens().add(i);
-            atualizaFornecedor(fornecedor);
-        });
-    }
-
-    public FornecedorModel buscaFornecedorCnpj(String cnpj) {
+    public FornecedorModel buscaCnpj(String cnpj) {
         return fornecedorRepository.findByCnpj(cnpj);
     }
 
-    public FornecedorModel atualizaFornecedor(FornecedorModel fornecedor) {
+    public FornecedorModel atualiza(FornecedorModel fornecedor) {
         return fornecedorRepository.save(fornecedor);
     }
 
-    public void defineFornecedorAtivo(String cnpj, char defineEstado) throws Exception {
-        FornecedorModel fornecedor = buscaFornecedorCnpj(cnpj);
+    public void alteraFornecedorAtivo(String cnpj, char alteraEstado) throws Exception {
+        FornecedorModel fornecedor = buscaCnpj(cnpj);
 
-        if (defineEstado == 'S' || defineEstado == 's') {
+        if (alteraEstado == 'S' || alteraEstado == 's') {
             fornecedor.setFornecedorAtivo(true);
-            atualizaFornecedor(fornecedor);
-        } else if (defineEstado == 'N' || defineEstado == 'n') {
+            atualiza(fornecedor);
+        } else if (alteraEstado == 'N' || alteraEstado == 'n') {
             fornecedor.setFornecedorAtivo(false);
-            atualizaFornecedor(fornecedor);
+            atualiza(fornecedor);
         } else {
             throw new Exception("Parâmetro inválido");
         }
