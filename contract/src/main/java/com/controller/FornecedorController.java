@@ -19,7 +19,7 @@ public class FornecedorController {
 
     private FornecedorService fornecedorService;
 
-    @ApiOperation(value = "Cadastra Fornecedor")
+    @ApiOperation(value = "Registra fornecedor")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Fornecedor registrado"),
             @ApiResponse(code = 404, message = "Não encontrado"),
@@ -27,25 +27,25 @@ public class FornecedorController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public FornecedorModel save(@RequestBody FornecedorModel fornecedor) {
-        return fornecedorService.save(fornecedor);
+    public FornecedorModel cadastraFornecedor(@RequestBody FornecedorModel fornecedor) {
+        return fornecedorService.registraFornecedor(fornecedor);
     }
 
-    @ApiOperation(value = "Cadastra item")
+    @ApiOperation(value = "Registra itens")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Item registrado"),
+            @ApiResponse(code = 201, message = "Itens registrados"),
             @ApiResponse(code = 404, message = "Não encontado"),
-            @ApiResponse(code = 500, message = "Erro Interno")
+            @ApiResponse(code = 500, message = "Erro interno")
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/itens")
-    public void registraIten(@RequestBody ItenFornecidoModel iten) {
-        fornecedorService.registraIten(iten);
+    public void cadastraItens(@RequestBody ItenFornecidoModel itens) {
+        fornecedorService.registraItens(itens);
     }
 
     @ApiOperation(value = "Ativa o fornecedor")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Operação ocorrida com sucesso"),
+            @ApiResponse(code = 200, message = "Fornecedor ativado"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
@@ -56,7 +56,7 @@ public class FornecedorController {
 
     @ApiOperation(value = "Desativa o fornecedor")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Operação ocorrida com sucesso"),
+            @ApiResponse(code = 200, message = "Fornecedor desativado"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })

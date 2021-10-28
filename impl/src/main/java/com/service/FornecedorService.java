@@ -12,13 +12,13 @@ public class FornecedorService {
 
     private FornecedorRepository fornecedorRepository;
 
-    public FornecedorModel save(FornecedorModel fornecedor) {
+    public FornecedorModel registraFornecedor(FornecedorModel fornecedor) {
         return fornecedorRepository.insert(fornecedor);
     }
 
-    public void registraIten(ItenFornecidoModel iten) {
-        FornecedorModel fm = fornecedorRepository.findByCnpj(iten.getCnpj());
-        fm.getListaDeItens().add(iten);
+    public void registraItens(ItenFornecidoModel itens) {
+        FornecedorModel fm = fornecedorRepository.findByCnpj(itens.getCnpj());
+        fm.getListaDeItens().add(itens);
         fornecedorRepository.save(fm);
     }
 
