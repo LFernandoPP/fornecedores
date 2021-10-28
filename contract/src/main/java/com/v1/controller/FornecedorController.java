@@ -38,7 +38,7 @@ public class FornecedorController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{cnpj}")
-    public FornecedorModel buscaCnpj(@PathVariable String cnpj){
+    public FornecedorModel buscaCnpj(@PathVariable String cnpj) {
         return service.buscaCnpj(cnpj);
     }
 
@@ -50,7 +50,7 @@ public class FornecedorController {
     })
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/{cnpj}/alteraEstado/{defineEstado}")
-    public void alteraFornecedorAtivo(@PathVariable String cnpj, @PathVariable char alteraEstado) throws Exception {
-        service.alteraFornecedorAtivo(cnpj, alteraEstado);
+    public FornecedorModel alteraStatus(@PathVariable String cnpj, @PathVariable String novoStatus) {
+        return service.alteraStatus(cnpj, novoStatus);
     }
 }

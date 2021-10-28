@@ -28,6 +28,6 @@ public class FornecedorModel {
     private String email;
     private String telefone;
     private String endereco;
-    private boolean fornecedorAtivo;
+    private FornecimentoStatusEnum fornecimentoStatusEnum;
     private List<ItemModel> listaItens = new ArrayList<>();
 }

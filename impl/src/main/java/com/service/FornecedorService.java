@@ -1,6 +1,7 @@
 package com.service;
 
 import com.model.FornecedorModel;
+import com.model.FornecimentoStatusEnum;
 import com.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,17 +24,9 @@ public class FornecedorService {
         return fornecedorRepository.save(fornecedor);
     }
 
-    public void alteraFornecedorAtivo(String cnpj, char alteraEstado) throws Exception {
+    public FornecedorModel alteraStatus(String cnpj, String alteraStatus) {
         FornecedorModel fornecedor = buscaCnpj(cnpj);
-
-        if (alteraEstado == 'S' || alteraEstado == 's') {
-            fornecedor.setFornecedorAtivo(true);
-            atualiza(fornecedor);
-        } else if (alteraEstado == 'N' || alteraEstado == 'n') {
-            fornecedor.setFornecedorAtivo(false);
-            atualiza(fornecedor);
-        } else {
-            throw new Exception("Parâmetro inválido");
-        }
+        fornecedor.setFornecimentoStatusEnum(FornecimentoStatusEnum.valueOf(alteraStatus.toUpperCase()));
+        return atualiza(fornecedor);
     }
 }
