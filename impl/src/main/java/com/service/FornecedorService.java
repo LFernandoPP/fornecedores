@@ -22,15 +22,17 @@ public class FornecedorService {
         fornecedorRepository.save(fm);
     }
 
-    public void desativaFornecedor(String cnpj) {
+    public void defineFornecedorAtivo(String cnpj, char defineEstado) throws Exception {
         FornecedorModel fornecedor = fornecedorRepository.findByCnpj(cnpj);
-        fornecedor.setFornecedorAtivo(false);
-        fornecedorRepository.save(fornecedor);
-    }
 
-    public void ativaFornecedor(String cnpj) {
-        FornecedorModel fornecedor = fornecedorRepository.findByCnpj(cnpj);
-        fornecedor.setFornecedorAtivo(true);
-        fornecedorRepository.save(fornecedor);
+        if (defineEstado == 'S' || defineEstado == 's') {
+            fornecedor.setFornecedorAtivo(true);
+            fornecedorRepository.save(fornecedor);
+        } else if (defineEstado == 'N' || defineEstado == 'n') {
+            fornecedor.setFornecedorAtivo(false);
+            fornecedorRepository.save(fornecedor);
+        } else {
+            throw new Exception("Parâmetro inválido");
+        }
     }
 }

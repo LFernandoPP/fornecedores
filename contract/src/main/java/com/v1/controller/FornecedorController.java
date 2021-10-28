@@ -43,25 +43,14 @@ public class FornecedorController {
         fornecedorService.registraItens(itens);
     }
 
-    @ApiOperation(value = "Ativa o fornecedor")
+    @ApiOperation(value = "Define o estado do fornecedor")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Fornecedor ativado"),
+            @ApiResponse(code = 200, message = "Fornecedor ativado/desativado com sucesso"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @PutMapping(value = "/ativa/{cnpj}")
-    public void ativaFornecedor(@PathVariable String cnpj) {
-        fornecedorService.ativaFornecedor(cnpj);
-    }
-
-    @ApiOperation(value = "Desativa o fornecedor")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "Fornecedor desativado"),
-            @ApiResponse(code = 404, message = "Não encontrado"),
-            @ApiResponse(code = 500, message = "Erro interno")
-    })
-    @PutMapping(value = "/desativa/{cnpj}")
-    public void desativaFornecedor(@PathVariable String cnpj) {
-        fornecedorService.desativaFornecedor(cnpj);
+    @PutMapping(value = "/{cnpj}/defineEstado/{defineEstado}")
+    public void defineFornecedorAtivo(@PathVariable String cnpj, @PathVariable char defineEstado) throws Exception {
+        fornecedorService.defineFornecedorAtivo(cnpj, defineEstado);
     }
 }
