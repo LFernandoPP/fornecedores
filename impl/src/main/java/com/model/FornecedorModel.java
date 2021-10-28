@@ -24,7 +24,7 @@ public class FornecedorModel {
     private String cnpj;
     private String nomeFantasia;
     private String razaoSocial;
-    private Departamento departamento;
+    private DepartamentoEnum departamentoEnum;
     private String email;
     private String telefone;
     private String endereco;
