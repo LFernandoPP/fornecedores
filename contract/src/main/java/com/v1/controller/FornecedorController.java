@@ -1,4 +1,4 @@
-package com.controller;
+package com.v1.controller;
 
 import com.model.FornecedorModel;
 import com.model.ItenFornecidoModel;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "Fornecedor controller")
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/fornecedor")
+@RequestMapping(path = "/v1/fornecedor")
 public class FornecedorController {
 
     private FornecedorService fornecedorService;
