@@ -31,4 +31,28 @@ public class ItemController {
     public List<ItemModel> cadastra(@RequestBody List<ItemModel> itens) {
         return service.cadastra(itens);
     }
+
+    @ApiOperation(value = "Busca lista de itens pelo cnpj")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Itens encontrados"),
+            @ApiResponse(code = 404, message = "Não encontrado"),
+            @ApiResponse(code = 500, message = "Erro interno")
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{cnpj}")
+    public List<ItemModel> buscaCnpj(@PathVariable String cnpj) {
+        return service.buscaCnpj(cnpj);
+    }
+
+    @ApiOperation(value = "Busca todos os itens")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Itens encontrados"),
+            @ApiResponse(code = 404, message = "Não encontrado"),
+            @ApiResponse(code = 500, message = "Erro interno")
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
+    public List<ItemModel> buscaTodos() {
+        return service.buscaTodos();
+    }
 }

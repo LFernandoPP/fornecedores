@@ -49,7 +49,7 @@ public class FornecedorController {
             @ApiResponse(code = 500, message = "Erro interno")
     })
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/{cnpj}/alteraEstado/{defineEstado}")
+    @PutMapping(value = "/{cnpj}/alteraEstado/{novoStatus}")
     public FornecedorModel alteraStatus(@PathVariable String cnpj, @PathVariable String novoStatus) {
         return service.alteraStatus(cnpj, novoStatus);
     }

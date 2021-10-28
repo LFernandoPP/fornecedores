@@ -6,6 +6,8 @@ import com.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @AllArgsConstructor
 @Service
 public class FornecedorService {
@@ -24,9 +26,9 @@ public class FornecedorService {
         return fornecedorRepository.save(fornecedor);
     }
 
-    public FornecedorModel alteraStatus(String cnpj, String alteraStatus) {
+    public FornecedorModel alteraStatus(String cnpj, String novoStatus) {
         FornecedorModel fornecedor = buscaCnpj(cnpj);
-        fornecedor.setFornecimentoStatusEnum(FornecimentoStatusEnum.valueOf(alteraStatus.toUpperCase()));
+        fornecedor.setFornecimentoStatusEnum(FornecimentoStatusEnum.valueOf(novoStatus.toUpperCase(Locale.ROOT)));
         return atualiza(fornecedor);
     }
 }

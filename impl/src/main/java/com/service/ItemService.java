@@ -6,6 +6,7 @@ import com.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -21,5 +22,19 @@ public class ItemService {
             repository.save(fornecedor);
         });
         return itens;
+    }
+
+    public List<ItemModel> buscaCnpj(String cnpj) {
+        return repository.findByCnpj(cnpj).getListaItens();
+    }
+
+    public List<ItemModel> buscaTodos() {
+        List<FornecedorModel> fornecedores = repository.findAll();
+        List<ItemModel> novaLista = new ArrayList<>();
+
+        fornecedores.forEach(lista -> {
+            novaLista.addAll(lista.getListaItens());
+        });
+        return novaLista;
     }
 }
