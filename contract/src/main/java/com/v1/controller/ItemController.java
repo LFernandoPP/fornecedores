@@ -15,7 +15,7 @@ import java.util.List;
 @Api(value = "Item controller")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/itens")
+@RequestMapping(path = "/itens/v1")
 public class ItemController {
 
     private ItemService service;
@@ -28,17 +28,16 @@ public class ItemController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public List<ItemModel> cadastra(@RequestBody List<ItemModel> itens) {
+    public List<ItemModel> cadastra(@RequestBody List<ItemModel> itens)git {
         return service.cadastra(itens);
     }
 
     @ApiOperation(value = "Busca lista de itens pelo cnpj")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Itens encontrados"),
+            @ApiResponse(code = 200, message = "Itens encontrados"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{cnpj}")
     public List<ItemModel> buscaCnpj(@PathVariable String cnpj) {
         return service.buscaCnpj(cnpj);
@@ -46,11 +45,10 @@ public class ItemController {
 
     @ApiOperation(value = "Busca todos os itens")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Itens encontrados"),
+            @ApiResponse(code = 200, message = "Itens encontrados"),
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<ItemModel> buscaTodos() {
         return service.buscaTodos();

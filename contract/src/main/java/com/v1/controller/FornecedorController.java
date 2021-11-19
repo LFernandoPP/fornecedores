@@ -1,6 +1,7 @@
 package com.v1.controller;
 
 import com.model.FornecedorModel;
+import com.model.FornecimentoStatusEnum;
 import com.service.FornecedorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "Fornecedor controller")
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/v1/fornecedor")
+@RequestMapping(path = "/fornecedor/v1")
 public class FornecedorController {
 
     private FornecedorService service;
@@ -36,7 +37,6 @@ public class FornecedorController {
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno"),
     })
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{cnpj}")
     public FornecedorModel buscaCnpj(@PathVariable String cnpj) {
         return service.buscaCnpj(cnpj);
@@ -48,9 +48,8 @@ public class FornecedorController {
             @ApiResponse(code = 404, message = "Não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/{cnpj}/alteraEstado/{novoStatus}")
-    public FornecedorModel alteraStatus(@PathVariable String cnpj, @PathVariable String novoStatus) {
+    @PutMapping(value = "/{cnpj}/alteraStatus/{novoStatus}")
+    public String alteraStatus(@PathVariable String cnpj, @PathVariable FornecimentoStatusEnum novoStatus) {
         return service.alteraStatus(cnpj, novoStatus);
     }
 }
