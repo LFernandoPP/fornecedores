@@ -1,4 +1,4 @@
-package com.v1.facade;
+package com.facade;
 
 import com.model.FornecimentoStatusEnum;
 import com.service.FornecedorService;
@@ -7,19 +7,18 @@ import com.v1.dto.response.FornecedorResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import static com.v1.mapper.FornecedorMapper.mapFornecedorModelParaFornecedorResponse;
-import static com.v1.mapper.FornecedorMapper.mapFornecedorRequestParaFornecedorModel;
+import static com.mapper.FornecedorMapper.mapFornecedorModelParaFornecedorResponse;
+import static com.mapper.FornecedorMapper.mapFornecedorRequestParaFornecedorModel;
 
 @AllArgsConstructor
 @Service
 public class FornecedorFacade {
 
     private FornecedorService service;
-//    ValidacaoService validacao;
+
+    private FornecedorResponse response;
 
     public FornecedorResponse cadastra(FornecedorRequest fornecedor) {
-//        validacao.validaCnpj(fornecedor.getCnpj().replaceAll("[,/.]", ""));
-
         return mapFornecedorModelParaFornecedorResponse(service.cadastra(mapFornecedorRequestParaFornecedorModel(fornecedor)));
     }
 

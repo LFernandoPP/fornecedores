@@ -1,4 +1,4 @@
-package com.v1.facade;
+package com.facade;
 
 public class ItemFacade {
 }

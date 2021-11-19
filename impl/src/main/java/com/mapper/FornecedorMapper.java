@@ -1,4 +1,4 @@
-package com.v1.mapper;
+package com.mapper;
 
 import com.model.FornecedorModel;
 import com.v1.dto.request.FornecedorRequest;
