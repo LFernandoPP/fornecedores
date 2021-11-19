@@ -1,8 +1,9 @@
 package com.v1.controller;
 
-import com.model.FornecedorModel;
 import com.model.FornecimentoStatusEnum;
-import com.service.FornecedorService;
+import com.v1.dto.request.FornecedorRequest;
+import com.v1.dto.response.FornecedorResponse;
+import com.v1.facade.FornecedorFacade;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/fornecedor/v1")
 public class FornecedorController {
 
-    private FornecedorService service;
+    private FornecedorFacade facade;
 
     @ApiOperation(value = "Cadastra o fornecedor")
     @ApiResponses({
@@ -27,8 +28,8 @@ public class FornecedorController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public FornecedorModel cadastra(@RequestBody FornecedorModel fornecedor) {
-        return service.cadastra(fornecedor);
+    public FornecedorResponse cadastra(@RequestBody FornecedorRequest fornecedor) {
+        return facade.cadastra(fornecedor);
     }
 
     @ApiOperation(value = "Busca por cnpj")
@@ -38,8 +39,8 @@ public class FornecedorController {
             @ApiResponse(code = 500, message = "Erro interno"),
     })
     @GetMapping(value = "/{cnpj}")
-    public FornecedorModel buscaCnpj(@PathVariable String cnpj) {
-        return service.buscaCnpj(cnpj);
+    public FornecedorResponse buscaCnpj(@PathVariable String cnpj) {
+        return facade.buscaCnpj(cnpj);
     }
 
     @ApiOperation(value = "Altera o status de fornecimento")
@@ -50,6 +51,6 @@ public class FornecedorController {
     })
     @PutMapping(value = "/{cnpj}/alteraStatus/{novoStatus}")
     public String alteraStatus(@PathVariable String cnpj, @PathVariable FornecimentoStatusEnum novoStatus) {
-        return service.alteraStatus(cnpj, novoStatus);
+        return facade.alteraStatus(cnpj, novoStatus);
     }
 }

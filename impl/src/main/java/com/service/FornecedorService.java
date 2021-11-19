@@ -17,6 +17,7 @@ public class FornecedorService {
 
     public FornecedorModel cadastra(FornecedorModel fornecedor) {
         cnpjRepository.cnpjStatus(fornecedor.getCnpj());
+//        System.out.println(cnpjRepository.cnpjStatus(fornecedor.getCnpj()).booleanValue());
 //        valida.validaCnpjRegistrado(fornecedor.getCnpj());
 
         return fornecedorRepository.insert(fornecedor);
