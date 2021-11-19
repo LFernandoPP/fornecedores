@@ -2,12 +2,13 @@ package com.v1.dto.request;
 
 import com.model.DepartamentoEnum;
 import com.model.FornecimentoStatusEnum;
-import com.model.ItemModel;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,9 +21,9 @@ public class FornecedorRequest {
     private String nomeFantasia;
     private String razaoSocial;
     private DepartamentoEnum departamentoEnum;
+    @Email
     private String email;
     private String telefone;
     private String endereco;
     private FornecimentoStatusEnum fornecimentoStatusEnum;
-    private List<ItemModel> listaItens = new ArrayList<>();
 }
