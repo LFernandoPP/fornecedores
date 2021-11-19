@@ -17,7 +17,6 @@ public class FornecedorMapper {
                 .telefone(fornecedor.getTelefone())
                 .endereco(fornecedor.getEndereco())
                 .fornecimentoStatusEnum(fornecedor.getFornecimentoStatusEnum())
-                .listaItens(fornecedor.getListaItens())
                 .build();
     }
 
