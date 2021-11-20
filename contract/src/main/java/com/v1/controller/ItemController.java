@@ -1,7 +1,8 @@
 package com.v1.controller;
 
-import com.model.ItemModel;
-import com.service.ItemService;
+import com.facade.ItemFacade;
+import com.v1.dto.request.ItemRequest;
+import com.v1.dto.response.ItemResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -12,13 +13,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.v1.mapper.ItemMapper.mapItensListRequestToItemListModel;
+import static com.v1.mapper.ItemMapper.mapListItemModelToItensListResponse;
+
 @Api(value = "Item controller")
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/itens/v1")
 public class ItemController {
 
-    private ItemService service;
+    private ItemFacade facade;
 
     @ApiOperation(value = "Cadastra itens")
     @ApiResponses({
@@ -28,8 +32,8 @@ public class ItemController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public List<ItemModel> cadastra(@RequestBody List<ItemModel> itens)git {
-        return service.cadastra(itens);
+    public List<ItemResponse> cadastra(@RequestBody List<ItemRequest> itens) {
+        return mapListItemModelToItensListResponse(facade.cadastra(mapItensListRequestToItemListModel(itens)));
     }
 
     @ApiOperation(value = "Busca lista de itens pelo cnpj")
@@ -39,8 +43,8 @@ public class ItemController {
             @ApiResponse(code = 500, message = "Erro interno")
     })
     @GetMapping("/{cnpj}")
-    public List<ItemModel> buscaCnpj(@PathVariable String cnpj) {
-        return service.buscaCnpj(cnpj);
+    public List<ItemResponse> buscaCnpj(@PathVariable String cnpj) {
+        return mapListItemModelToItensListResponse(facade.buscaCnpj(cnpj));
     }
 
     @ApiOperation(value = "Busca todos os itens")
@@ -50,7 +54,7 @@ public class ItemController {
             @ApiResponse(code = 500, message = "Erro interno")
     })
     @GetMapping
-    public List<ItemModel> buscaTodos() {
-        return service.buscaTodos();
+    public List<ItemResponse> buscaTodos() {
+        return mapListItemModelToItensListResponse(facade.buscaTodos());
     }
 }

@@ -29,12 +29,12 @@ public class ItemService {
     }
 
     public List<ItemModel> buscaTodos() {
+
         List<FornecedorModel> fornecedores = repository.findAll();
         List<ItemModel> novaLista = new ArrayList<>();
 
-        fornecedores.forEach(lista -> {
-            novaLista.addAll(lista.getListaItens());
-        });
+        fornecedores.forEach(lista ->
+                novaLista.addAll(lista.getListaItens()));
         return novaLista;
     }
 }

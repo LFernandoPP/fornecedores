@@ -1,10 +1,10 @@
-package com.model;
+package com.v1.dto.response;
 
+import com.model.DepartamentoEnum;
+import com.model.FornecimentoStatusEnum;
+import com.model.ItemModel;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,16 +13,12 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Document(value = "Fornecedor")
-public class FornecedorModel {
+public class FornecedorResponse {
 
-    @Indexed(unique = true)
     private String cnpj;
-
     private String nomeFantasia;
     private String razaoSocial;
     private DepartamentoEnum departamentoEnum;
-    @Email
     private String email;
     private String telefone;
     private String endereco;

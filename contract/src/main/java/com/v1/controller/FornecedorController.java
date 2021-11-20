@@ -1,9 +1,9 @@
 package com.v1.controller;
 
+import com.facade.FornecedorFacade;
 import com.model.FornecimentoStatusEnum;
 import com.v1.dto.request.FornecedorRequest;
 import com.v1.dto.response.FornecedorResponse;
-import com.v1.facade.FornecedorFacade;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -11,6 +11,9 @@ import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import static com.v1.mapper.FornecedorMapper.mapFornecedorModelParaFornecedorResponse;
+import static com.v1.mapper.FornecedorMapper.mapFornecedorRequestParaFornecedorModel;
 
 @Api(value = "Fornecedor controller")
 @RestController
@@ -29,7 +32,7 @@ public class FornecedorController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public FornecedorResponse cadastra(@RequestBody FornecedorRequest fornecedor) {
-        return facade.cadastra(fornecedor);
+        return mapFornecedorModelParaFornecedorResponse(facade.cadastra(mapFornecedorRequestParaFornecedorModel(fornecedor)));
     }
 
     @ApiOperation(value = "Busca por cnpj")
@@ -40,7 +43,7 @@ public class FornecedorController {
     })
     @GetMapping(value = "/{cnpj}")
     public FornecedorResponse buscaCnpj(@PathVariable String cnpj) {
-        return facade.buscaCnpj(cnpj);
+        return mapFornecedorModelParaFornecedorResponse(facade.buscaCnpj(cnpj));
     }
 
     @ApiOperation(value = "Altera o status de fornecimento")
