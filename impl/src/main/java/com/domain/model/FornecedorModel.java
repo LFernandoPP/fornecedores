@@ -1,28 +1,23 @@
-package com.model;
+package com.domain.model;
 
-import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
 @Document(value = "Fornecedor")
 public class FornecedorModel {
 
-    @Indexed(unique = true)
     private String cnpj;
-
     private String nomeFantasia;
     private String razaoSocial;
     private DepartamentoEnum departamentoEnum;
-    @Email
     private String email;
     private String telefone;
     private String endereco;

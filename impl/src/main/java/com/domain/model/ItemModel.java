@@ -1,11 +1,9 @@
-package com.model;
+package com.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotEmpty;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +11,6 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 public class ItemModel {
 
-    @NotEmpty
     private String cnpj;
     private String nomeFantasia;
     private String item;
