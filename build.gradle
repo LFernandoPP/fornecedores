@@ -33,7 +33,6 @@ allprojects {
     }
 
     dependencies {
-        implementation 'javax.validation:validation-api:2.0.1.Final'
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.3'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         compileOnly 'org.projectlombok:lombok'
@@ -45,7 +44,8 @@ allprojects {
         useJUnitPlatform()
     }
 }
+
 dependencies {
+    implementation project(":impl")
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation project (':contract')
 }
