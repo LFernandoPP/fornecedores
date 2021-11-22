@@ -3,7 +3,9 @@ package com.v1.mapper;
 import com.model.FornecedorModel;
 import com.v1.dto.request.FornecedorRequest;
 import com.v1.dto.response.FornecedorResponse;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class FornecedorMapper {
 
     public static FornecedorModel mapFornecedorRequestParaFornecedorModel(FornecedorRequest fornecedor) {

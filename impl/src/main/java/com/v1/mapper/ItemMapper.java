@@ -3,10 +3,12 @@ package com.v1.mapper;
 import com.model.ItemModel;
 import com.v1.dto.request.ItemRequest;
 import com.v1.dto.response.ItemResponse;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
 public class ItemMapper {
 
     public static List<ItemResponse> mapListItemModelToItensListResponse(List<ItemModel> item) {
