@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class CnpjResponse {
 
-
     private String cnpj;
     private String status;
     private String message;
